@@ -1,0 +1,9 @@
+C:\Users\gpfqp\Desktop\eliminator_GUI\eliminator_3\eliminator_3\bin\Debug\eliminator_3.exe.config
+C:\Users\gpfqp\Desktop\eliminator_GUI\eliminator_3\eliminator_3\bin\Debug\eliminator_3.exe
+C:\Users\gpfqp\Desktop\eliminator_GUI\eliminator_3\eliminator_3\bin\Debug\eliminator_3.pdb
+C:\Users\gpfqp\Desktop\eliminator_GUI\eliminator_3\eliminator_3\obj\Debug\eliminator_3.csprojResolveAssemblyReference.cache
+C:\Users\gpfqp\Desktop\eliminator_GUI\eliminator_3\eliminator_3\obj\Debug\eliminator_3.Properties.Resources.resources
+C:\Users\gpfqp\Desktop\eliminator_GUI\eliminator_3\eliminator_3\obj\Debug\eliminator_3.csproj.GenerateResource.Cache
+C:\Users\gpfqp\Desktop\eliminator_GUI\eliminator_3\eliminator_3\obj\Debug\eliminator_3.exe
+C:\Users\gpfqp\Desktop\eliminator_GUI\eliminator_3\eliminator_3\obj\Debug\eliminator_3.pdb
+C:\Users\gpfqp\Desktop\eliminator_GUI\eliminator_3\eliminator_3\obj\Debug\eliminator_3.잉여지우개.resources
