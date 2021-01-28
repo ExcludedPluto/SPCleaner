@@ -13,7 +13,7 @@ C:\\Program Files (x86)\\INITECH\\INISAFE MoaSign EX
 C:\\Program Files (x86)\\INCAInternet UnInstall\\nProtect Online Security
 C:\\Program Files (x86)\\DGBank\\RealIp
 C:\\Program Files (x86)\\INITECH\\INISAFE SmartManagerEX\\smartmanagerex
-C:\\Program Files (x86)\\RaonSecure\\bridge\\CrossEX\\touchenex
+C:\\Program Files (x86)\\RaonSecure\\TouchEn nxKey
 C:\\Program Files (x86)\\Wizvera\\Delfino-G3
 C:\\Program Files (x86)\\Initech\\SHTTP
 C:\\Program Files (x86)\\iniLINE\\CrossEX\\crossex
