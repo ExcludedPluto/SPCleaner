@@ -11,12 +11,12 @@ private:
 	char ThereBK[17][9];
 	int *numSP_re;
 	int (*inBK_re)[5];
-	vector<string> classifiedBK;
+	vector<string>& classifiedBK;
 public:
 	classify(int *numSP_re_m, int(*inBK_re_m)[5], vector<string>& classifiedBK);
 	bool checkBK();
 };
-classify::classify(int *numSP_re_m, int(*inBK_re_m)[5], vector<string>& classifiedBK)
+classify::classify(int *numSP_re_m, int(*inBK_re_m)[5], vector<string>& classifiedBK_m) : classifiedBK(classifiedBK_m)
 {
 	numSP_re = numSP_re_m;
 	inBK_re = inBK_re_m;

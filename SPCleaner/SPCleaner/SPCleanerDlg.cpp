@@ -7,7 +7,7 @@
 #include "SPCleaner.h"
 #include "SPCleanerDlg.h"
 
-#include "afxdialogex.h"
+#include <afxdialogex.h>
 #include <atlpath.h>
 #include <iostream>
 #include <fstream>
@@ -31,6 +31,7 @@ using namespace std;
 
 /*************************************************************************************/
 //전역변수
+CFont m_font;
 int numSP_re[21] = { 0, };			//현존 프로그램 기록
 int inBK_re[17][5] = { 0 };			//현존 은행라인에 프로그램 저장
 string pathSP[21] = {
@@ -130,6 +131,7 @@ CSPCleanerDlg::CSPCleanerDlg(CWnd* pParent /*=nullptr*/)
 void CSPCleanerDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
+	DDX_Control(pDX, IDC_RICHEDIT21, m_mainEdit);
 }
 
 BEGIN_MESSAGE_MAP(CSPCleanerDlg, CDialogEx)
@@ -137,6 +139,8 @@ BEGIN_MESSAGE_MAP(CSPCleanerDlg, CDialogEx)
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
 	ON_BN_CLICKED(IDOK, &CSPCleanerDlg::OnBnClickedOk)
+	ON_WM_GETMINMAXINFO()
+	ON_BN_CLICKED(IDCANCEL, &CSPCleanerDlg::OnBnClickedCancel)
 END_MESSAGE_MAP()
 
 
@@ -173,6 +177,10 @@ BOOL CSPCleanerDlg::OnInitDialog()
 
 	// TODO: 여기에 추가 초기화 작업을 추가합니다.
 
+	m_font.CreateFont(15, 0, 0, 0, FW_NORMAL, FALSE, FALSE, 0, DEFAULT_CHARSET,
+		OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY,
+		DEFAULT_PITCH | FF_SWISS, _T("굴림체"));
+	GetDlgItem(IDC_STATIC)->SetFont(&m_font);
 	// ***********************************************************************************
 	// Search 시작 
 	int numSP = 0;
@@ -191,6 +199,9 @@ BOOL CSPCleanerDlg::OnInitDialog()
 	//classifiedBK 파일에 현재 존재하는 은행을 번호 : 은행명으로 기록
 	classify classify_a(numSP_re, inBK_re, classifiedBK);
 	isBK = classify_a.checkBK();	//존재하는 기관없을 시 0, 있으면 1 반환
+
+	CSPCleanerDlg::PrintMain();
+
 	// **************************************************************************************//
 
 	return TRUE;  // 포커스를 컨트롤에 설정하지 않으면 TRUE를 반환합니다.
@@ -250,5 +261,35 @@ HCURSOR CSPCleanerDlg::OnQueryDragIcon()
 void CSPCleanerDlg::OnBnClickedOk()
 {
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+
 	CDialogEx::OnOK();
+}
+
+
+void CSPCleanerDlg::OnGetMinMaxInfo(MINMAXINFO* lpMMI)
+{
+	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
+	lpMMI->ptMinTrackSize.x = 460;
+	lpMMI->ptMinTrackSize.y = 260;
+	lpMMI->ptMaxTrackSize.x = 460;
+	lpMMI->ptMaxTrackSize.y = 260;
+	CDialogEx::OnGetMinMaxInfo(lpMMI);
+}
+
+
+void CSPCleanerDlg::OnBnClickedCancel()
+{
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+	CDialogEx::OnCancel();
+}
+
+void  CSPCleanerDlg::PrintMain() {
+	if (isBK) {
+		for (int i = 0; i < classifiedBK.size(); i++) {
+			CSPCleanerDlg::m_mainEdit.ReplaceSel(CA2T(classifiedBK[i].c_str()));
+		}
+	}
+	else {
+		CSPCleanerDlg::m_mainEdit.ReplaceSel(CA2T(classifiedBK[0].c_str()));
+	}
 }

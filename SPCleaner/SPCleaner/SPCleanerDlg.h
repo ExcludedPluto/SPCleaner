@@ -33,4 +33,10 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	afx_msg void OnBnClickedOk();
+	afx_msg void OnGetMinMaxInfo(MINMAXINFO* lpMMI);
+	afx_msg void OnBnClickedCancel();
+	afx_msg void OnStnClickedStaticDisp();
+	afx_msg void OnEnChangeRichedit22();
+	void PrintMain();
+	CRichEditCtrl m_mainEdit;
 };
