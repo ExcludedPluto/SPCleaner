@@ -1,9 +1,0 @@
-C:\Users\gpfqp\Desktop\eliminator_GUI\eliminator_5\eliminator_5\bin\Debug\eliminator_5.exe.config
-C:\Users\gpfqp\Desktop\eliminator_GUI\eliminator_5\eliminator_5\bin\Debug\eliminator_5.exe
-C:\Users\gpfqp\Desktop\eliminator_GUI\eliminator_5\eliminator_5\bin\Debug\eliminator_5.pdb
-C:\Users\gpfqp\Desktop\eliminator_GUI\eliminator_5\eliminator_5\obj\Debug\eliminator_5.csprojResolveAssemblyReference.cache
-C:\Users\gpfqp\Desktop\eliminator_GUI\eliminator_5\eliminator_5\obj\Debug\eliminator_5.잉여지우개.resources
-C:\Users\gpfqp\Desktop\eliminator_GUI\eliminator_5\eliminator_5\obj\Debug\eliminator_5.Properties.Resources.resources
-C:\Users\gpfqp\Desktop\eliminator_GUI\eliminator_5\eliminator_5\obj\Debug\eliminator_5.csproj.GenerateResource.Cache
-C:\Users\gpfqp\Desktop\eliminator_GUI\eliminator_5\eliminator_5\obj\Debug\eliminator_5.exe
-C:\Users\gpfqp\Desktop\eliminator_GUI\eliminator_5\eliminator_5\obj\Debug\eliminator_5.pdb

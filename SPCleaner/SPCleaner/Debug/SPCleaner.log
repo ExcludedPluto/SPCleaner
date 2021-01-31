@@ -1,0 +1,8 @@
+﻿  SPCleanerDlg.cpp
+C:\Users\gpfqp\Desktop\SPCleaner\SPCleaner\SPCleaner\deinstall.h(24,3): warning C4129: 'A': 문자 이스케이프 시퀀스를 인식할 수 없습니다.
+C:\Users\gpfqp\Desktop\SPCleaner\SPCleaner\SPCleaner\SPCleanerDlg.cpp(23,1): warning C4005: '_WIN32_WINNT': 매크로 재정의
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\SDKDDKVer.h(217): message : '_WIN32_WINNT'의 이전 정의를 참조하십시오.
+C:\Users\gpfqp\Desktop\SPCleaner\SPCleaner\SPCleaner\SPCleanerDlg.cpp(42,2): warning C4129: 'A': 문자 이스케이프 시퀀스를 인식할 수 없습니다.
+C:\Users\gpfqp\Desktop\SPCleaner\SPCleaner\SPCleaner\SPCleanerDlg.cpp(285,21): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\gpfqp\Desktop\SPCleaner\SPCleaner\SPCleaner\SPCleanerDlg.cpp(320,21): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+  SPCleaner.vcxproj -> C:\Users\gpfqp\Desktop\SPCleaner\SPCleaner\Debug\SPCleaner.exe

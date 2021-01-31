@@ -29,7 +29,7 @@ bool classify::checkBK()
 	{
 		if (numSP_re[1] == 1)
 		{
-			classifiedBK.push_back(std::to_string(i + 1) + " : 산업은행");
+			classifiedBK.push_back(std::to_string(i + 1) + " : 산업은행\n");
 			inBK_re[i][0] = 2;
 			inBK_re[i][1] = 4;
 			i++;
@@ -38,7 +38,7 @@ bool classify::checkBK()
 		{
 			if (numSP_re[1] == 1 && numSP_re[13] == 1)
 			{
-				classifiedBK.push_back(std::to_string(i + 1) + " : 우리은행");
+				classifiedBK.push_back(std::to_string(i + 1) + " : 우리은행\n");
 				inBK_re[i][0] = 2;
 				inBK_re[i][1] = 4;
 				inBK_re[i][2] = 13;
@@ -47,7 +47,7 @@ bool classify::checkBK()
 			}
 			if (numSP_re[8] == 1 && numSP_re[15] == 1)
 			{
-				classifiedBK.push_back(std::to_string(i + 1) + " : 전북은행");
+				classifiedBK.push_back(std::to_string(i + 1) + " : 전북은행\n");
 				inBK_re[i][0] = 4;
 				inBK_re[i][1] = 9;
 				inBK_re[i][2] = 13;
@@ -59,13 +59,13 @@ bool classify::checkBK()
 
 	if (numSP_re[6] == 1)
 	{
-		classifiedBK.push_back(std::to_string(i + 1) + " : 제주은행");
+		classifiedBK.push_back(std::to_string(i + 1) + " : 제주은행\n");
 		inBK_re[i][0] = 7;
 		i++;
 
 		if (numSP_re[2] == 1)
 		{
-			classifiedBK.push_back(std::to_string(i + 1) + " : 광주은행");
+			classifiedBK.push_back(std::to_string(i + 1) + " : 광주은행\n");
 			inBK_re[i][0] = 3;
 			inBK_re[i][1] = 7;
 			i++;
@@ -75,7 +75,7 @@ bool classify::checkBK()
 		{
 			if (numSP_re[8] == 1)
 			{
-				classifiedBK.push_back(std::to_string(i + 1) + " : 제일은행");
+				classifiedBK.push_back(std::to_string(i + 1) + " : 제일은행\n");
 				inBK_re[i][0] = 2;
 				inBK_re[i][1] = 7;
 				inBK_re[i][2] = 9;
@@ -83,7 +83,7 @@ bool classify::checkBK()
 
 				if (numSP_re[4] == 1 && numSP_re[15] == 1)
 				{
-					classifiedBK.push_back(std::to_string(i + 1) + " : 수협은행");
+					classifiedBK.push_back(std::to_string(i + 1) + " : 수협은행\n");
 					inBK_re[i][0] = 2;
 					inBK_re[i][1] = 5;
 					inBK_re[i][2] = 7;
@@ -93,7 +93,7 @@ bool classify::checkBK()
 				}
 				else if (numSP_re[10] == 1 && numSP_re[15] == 1)
 				{
-					classifiedBK.push_back(std::to_string(i + 1) + " : 부산은행");
+					classifiedBK.push_back(std::to_string(i + 1) + " : 부산은행\n");
 					inBK_re[i][0] = 2;
 					inBK_re[i][1] = 7;
 					inBK_re[i][2] = 9;
@@ -105,7 +105,7 @@ bool classify::checkBK()
 
 			if (numSP_re[15] == 1)
 			{
-				classifiedBK.push_back(std::to_string(i + 1) + " : 신한은행");
+				classifiedBK.push_back(std::to_string(i + 1) + " : 신한은행\n");
 				inBK_re[i][0] = 2;
 				inBK_re[i][1] = 7;
 				inBK_re[i][2] = 16;
@@ -116,7 +116,7 @@ bool classify::checkBK()
 		{
 			if (numSP_re[7] == 1)
 			{
-				classifiedBK.push_back(std::to_string(i + 1) + " : 농협");
+				classifiedBK.push_back(std::to_string(i + 1) + " : 농협\n");
 				inBK_re[i][0] = 2;
 				inBK_re[i][1] = 7;
 				inBK_re[i][2] = 8;
@@ -130,7 +130,7 @@ bool classify::checkBK()
 	{
 		if (numSP_re[1] == 1)
 		{
-			classifiedBK.push_back(std::to_string(i + 1) + " : 국민은행");
+			classifiedBK.push_back(std::to_string(i + 1) + " : 국민은행\n");
 			inBK_re[i][0] = 2;
 			inBK_re[i][1] = 17;
 			i++;
@@ -139,7 +139,7 @@ bool classify::checkBK()
 			{
 				if (numSP_re[8] == 1)
 				{
-					classifiedBK.push_back(std::to_string(i + 1) + " : 씨티은행");
+					classifiedBK.push_back(std::to_string(i + 1) + " : 씨티은행\n");
 					inBK_re[i][0] = 2;
 					inBK_re[i][1] = 9;
 					inBK_re[i][2] = 16;
@@ -148,7 +148,7 @@ bool classify::checkBK()
 				}
 				if (numSP_re[5] == 1 && numSP_re[10] == 1)
 				{
-					classifiedBK.push_back(std::to_string(i + 1) + " : 대구은행");
+					classifiedBK.push_back(std::to_string(i + 1) + " : 대구은행\n");
 					inBK_re[i][0] = 2;
 					inBK_re[i][1] = 6;
 					inBK_re[i][2] = 11;
@@ -162,14 +162,14 @@ bool classify::checkBK()
 		{
 			if (numSP_re[12] == 1)
 			{
-				classifiedBK.push_back(std::to_string(i + 1) + " : 경남은행");
+				classifiedBK.push_back(std::to_string(i + 1) + " : 경남은행\n");
 				inBK_re[i][0] = 9;
 				inBK_re[i][1] = 13;
 				inBK_re[i][2] = 17;
 				i++;
 				if (numSP_re[15] == 1)
 				{
-					classifiedBK.push_back(std::to_string(i + 1) + " : 기업은행");
+					classifiedBK.push_back(std::to_string(i + 1) + " : 기업은행\n");
 					inBK_re[i][0] = 9;
 					inBK_re[i][1] = 13;
 					inBK_re[i][2] = 16;
@@ -179,7 +179,7 @@ bool classify::checkBK()
 			}
 			else if (numSP_re[15] == 1)
 			{
-				classifiedBK.push_back(std::to_string(i + 1) + " : 하나은행");
+				classifiedBK.push_back(std::to_string(i + 1) + " : 하나은행\n");
 				inBK_re[i][0] = 9;
 				inBK_re[i][1] = 16;
 				inBK_re[i][2] = 17;
@@ -192,7 +192,7 @@ bool classify::checkBK()
 	{
 		if (numSP_re[11] == 1 && numSP_re[14] == 1)
 		{
-			classifiedBK.push_back(std::to_string(i + 1) + " : 케이은행");
+			classifiedBK.push_back(std::to_string(i + 1) + " : 케이은행\n");
 			inBK_re[i][0] = 2;
 			inBK_re[i][1] = 9;
 			inBK_re[i][2] = 12;

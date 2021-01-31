@@ -39,4 +39,6 @@ public:
 	afx_msg void OnEnChangeRichedit22();
 	void PrintMain();
 	CRichEditCtrl m_mainEdit;
+	afx_msg void OnEnChangeEdit1();
+	afx_msg void OnBnClickedBack();
 };

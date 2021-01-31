@@ -1,0 +1,4 @@
+﻿  TRACKER : 오류 TRK0005: "link.exe"을(를) 찾지 못했습니다. 지정된 파일을 찾을 수 없습니다.
+  
+  
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppCommon.targets(861,5): error MSB6006: "link.exe"이(가) 종료되었습니다(코드: 5).

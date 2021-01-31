@@ -16,6 +16,8 @@
 #include <vector>
 #include "Search.h"
 #include "classify.h"
+#include "compareBK.h"
+#include "deinstall.h"
 
 
 #define _WIN32_WINNT 0x0500 //윈도우 2000에서만 돌아간다고 명시하는것. 윈도우 2000이상에 있는 함수를 사용할때 적음
@@ -81,7 +83,10 @@ string nameSP[21] = {
 	"ClientSM.exe"
 };
 vector<string> classifiedBK;
-bool isBK;
+vector<string> BKListToDelete;
+bool isBK, isOnBKWindow;
+CString choosedBKString;
+CString choosedSPString;
 
 /************************************************************************************/
 
@@ -141,6 +146,8 @@ BEGIN_MESSAGE_MAP(CSPCleanerDlg, CDialogEx)
 	ON_BN_CLICKED(IDOK, &CSPCleanerDlg::OnBnClickedOk)
 	ON_WM_GETMINMAXINFO()
 	ON_BN_CLICKED(IDCANCEL, &CSPCleanerDlg::OnBnClickedCancel)
+	ON_EN_CHANGE(IDC_EDIT1, &CSPCleanerDlg::OnEnChangeEdit1)
+	ON_BN_CLICKED(IDC_BACK, &CSPCleanerDlg::OnBnClickedBack)
 END_MESSAGE_MAP()
 
 
@@ -177,10 +184,13 @@ BOOL CSPCleanerDlg::OnInitDialog()
 
 	// TODO: 여기에 추가 초기화 작업을 추가합니다.
 
-	m_font.CreateFont(15, 0, 0, 0, FW_NORMAL, FALSE, FALSE, 0, DEFAULT_CHARSET,
+	m_font.CreateFont(13, 0, 0, 0, FW_NORMAL, FALSE, FALSE, 0, DEFAULT_CHARSET,
 		OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY,
 		DEFAULT_PITCH | FF_SWISS, _T("굴림체"));
-	GetDlgItem(IDC_STATIC)->SetFont(&m_font);
+	GetDlgItem(IDC_STATIC_MAIN)->SetFont(&m_font);
+	GetDlgItem(IDC_STATIC_1)->SetFont(&m_font);
+
+	GetDlgItem(IDC_BACK)->ShowWindow(SW_HIDE);
 	// ***********************************************************************************
 	// Search 시작 
 	int numSP = 0;
@@ -201,7 +211,7 @@ BOOL CSPCleanerDlg::OnInitDialog()
 	isBK = classify_a.checkBK();	//존재하는 기관없을 시 0, 있으면 1 반환
 
 	CSPCleanerDlg::PrintMain();
-
+	isOnBKWindow = true;
 	// **************************************************************************************//
 
 	return TRUE;  // 포커스를 컨트롤에 설정하지 않으면 TRUE를 반환합니다.
@@ -261,8 +271,30 @@ HCURSOR CSPCleanerDlg::OnQueryDragIcon()
 void CSPCleanerDlg::OnBnClickedOk()
 {
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+	int messageReturn = MessageBox(_T("제대로 입력하셨습니까?"), _T("확인"), MB_OKCANCEL);
+	if (messageReturn == IDOK && isOnBKWindow) {
+		GetDlgItemText(IDC_EDIT1, choosedBKString);
 
-	CDialogEx::OnOK();
+		compareBK compare_a(inBK_re, numSP_re);
+		compare_a.choose(isBK, choosedBKString);
+		compare_a.print(BKListToDelete);
+
+		//텍스트 바꾸기, 내용 비우기
+		SetDlgItemText(IDC_STATIC_MAIN, _T("삭제하면 안되는 프로그램을 선택해주세요."));
+		CSPCleanerDlg::m_mainEdit.SetWindowText(_T(""));
+		for (int i = 0; i < BKListToDelete.size(); i++)
+			CSPCleanerDlg::m_mainEdit.ReplaceSel(CA2T(BKListToDelete[i].c_str()));
+		SetDlgItemText(IDC_EDIT1, _T(""));
+		GetDlgItem(IDC_BACK)->ShowWindow(SW_SHOW);
+		isOnBKWindow = false;
+	}
+	else if (messageReturn == IDOK && !isOnBKWindow) {
+		GetDlgItemText(IDC_EDIT1, choosedSPString);
+		deinstall deinstall_a(numSP_re);
+		deinstall_a.choose(choosedSPString);
+		CDialog::OnOK();
+	}
+	
 }
 
 
@@ -291,5 +323,31 @@ void  CSPCleanerDlg::PrintMain() {
 	}
 	else {
 		CSPCleanerDlg::m_mainEdit.ReplaceSel(CA2T(classifiedBK[0].c_str()));
+	}
+}
+
+void CSPCleanerDlg::OnEnChangeEdit1()
+{
+	// TODO:  RICHEDIT 컨트롤인 경우, 이 컨트롤은
+	// CDialogEx::OnInitDialog() 함수를 재지정 
+	//하고 마스크에 OR 연산하여 설정된 ENM_CHANGE 플래그를 지정하여 CRichEditCtrl().SetEventMask()를 호출하지 않으면
+	// 이 알림 메시지를 보내지 않습니다.
+
+	// TODO:  여기에 컨트롤 알림 처리기 코드를 추가합니다.
+}
+
+
+void CSPCleanerDlg::OnBnClickedBack()
+{
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+	int messageReturn = MessageBox(_T("삭제하고 싶지 않은 은행을 다시 선택하시겠습니까?"), _T("뒤로가기"), MB_OKCANCEL);
+	if (messageReturn == IDOK) {
+		SetDlgItemText(IDC_STATIC_MAIN, _T("삭제하면 안되는 은행을 선택해주세요."));
+		SetDlgItemText(IDC_EDIT1, _T(""));
+		GetDlgItem(IDC_BACK)->ShowWindow(SW_HIDE);
+		BKListToDelete.clear();
+		CSPCleanerDlg::m_mainEdit.SetWindowText(_T(""));
+		CSPCleanerDlg::PrintMain();
+		isOnBKWindow = true;
 	}
 }
