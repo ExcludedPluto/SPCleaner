@@ -13,6 +13,7 @@
 #include <fstream>
 #include <string>
 #include <atlconv.h>
+#include <Windows.h>
 #include <vector>
 #include "Search.h"
 #include "classify.h"
@@ -37,27 +38,27 @@ CFont m_font;
 int numSP_re[21] = { 0, };			//현존 프로그램 기록
 int inBK_re[17][5] = { 0 };			//현존 은행라인에 프로그램 저장
 string pathSP[21] = {
-	"C:\\Program Files\\Wizvera\\Veraport20",
-	"C:\\Program Files\\AhnLab\\Safe Transaction",
-	"C:\\Program Files(x86)\\AhnLab\ASP\\Components\\aosmgr",
-	"C:\\Program Files(x86)\\SoftForum\\XecureWeb\\AnySign",
-	"C:\\Program Files(x86)\\AlphaSecure\\ZeroKeeper",
-	"C:\\Program Files(x86)\\MarkAny\\WebDRMNoAX",
-	"C:\\Program Files(x86)\\INITECH\\INISAFE Web EX Client",
-	"C:\\Program Files(x86)\\INITECH\\INISAFE SandBox V1",
-	"C:\\Program Files(x86)\\IPinside_LWS",
-	"C:\\Program Files\\KeySharp\\kscertrelay",
-	"C:\\Program Files(x86)\\WooriBank\\RealIp",
-	"C:\\Program Files(x86)\\INITECH\\INISAFE MoaSign EX",
-	"C:\\Program Files(x86)\\INCAInternet UnInstall\\nProtect Online Security",
-	"C:\\Program Files(x86)\\DGBank\\RealIp",
-	"C:\\Program Files(x86)\\INITECH\\INISAFE SmartManagerEX\\smartmanagerex",
-	"C:\\Program Files(x86)\\RaonSecure\\TouchEn nxKey",
-	"C:\\Program Files(x86)\\Wizvera\\Delfino - G3",
-	"C:\\Program Files(x86)\\Initech\\SHTTP",
-	"C:\\Program Files(x86)\\iniLINE\\CrossEX\\crossex",
-	"C:\\Program Files(x86)\\InstallShield Installation Information\\{D448288F - D294 - 4E20 - 9573 - 13C8F4BAF56E}",
-	"C:\\Program Files(x86)\\SoftForum\\XecureWeb\\ActiveX"
+	"C:\\\\Program Files\\\\Wizvera\\\\Veraport20",
+	"C:\\\\Program Files\\\\AhnLab\\\\Safe Transaction",
+	"C:\\\\Program Files (x86)\\\\AhnLab\\ASP\\\\Components\\\\aosmgr",
+	"C:\\\\Program Files (x86)\\\\SoftForum\\\\XecureWeb\\\\AnySign",
+	"C:\\\\Program Files (x86)\\\\AlphaSecure\\\\ZeroKeeper",
+	"C:\\\\Program Files (x86)\\\\MarkAny\\\\WebDRMNoAX",
+	"C:\\\\Program Files (x86)\\\\INITECH\\\\INISAFE Web EX Client",
+	"C:\\\\Program Files (x86)\\\\INITECH\\\\INISAFE SandBox V1",
+	"C:\\\\Program Files (x86)\\\\IPinside_LWS",
+	"C:\\\\Program Files\\\\KeySharp\\\\kscertrelay",
+	"C:\\\\Program Files (x86)\\\\WooriBank\\\\RealIp",
+	"C:\\\\Program Files (x86)\\\\INITECH\\\\INISAFE MoaSign EX",
+	"C:\\\\Program Files (x86)\\\\INCAInternet UnInstall\\\\nProtect Online Security",
+	"C:\\\\Program Files (x86)\\\\DGBank\\\\RealIp",
+	"C:\\\\Program Files (x86)\\\\INITECH\\\\INISAFE SmartManagerEX\\\\smartmanagerex",
+	"C:\\\\Program Files (x86)\\\\RaonSecure\\\\TouchEn nxKey",
+	"C:\\\\Program Files (x86)\\\\Wizvera\\\\Delfino-G3",
+	"C:\\\\Program Files (x86)\\\\Initech\\\\SHTTP",
+	"C:\\\\Program Files (x86)\\\\iniLINE\\\\CrossEX\\\\crossex",
+	"C:\\\\Program Files (x86)\\\\InstallShield Installation Information\\\\{D448288F-D294-4E20-9573-13C8F4BAF56E}",
+	"C:\\\\Program Files (x86)\\\\SoftForum\\\\XecureWeb\\\\ActiveX"
 };
 string nameSP[21] = {
 	"unins000.exe",
@@ -184,15 +185,42 @@ BOOL CSPCleanerDlg::OnInitDialog()
 
 	// TODO: 여기에 추가 초기화 작업을 추가합니다.
 
+
+	// ***********************************************************************************//
+	//윈도우 타이틀 변경
+	SetWindowText(_T("SPCleaner"));
+
+	//32비트 환경일 경우 주소에서 (x86)을 지움
+	BOOL f64 = FALSE;
+	BOOL isWin64 = IsWow64Process(GetCurrentProcess(), &f64) && f64;
+	if (!isWin64) {
+		for (int i = 0; i < 21; i++) {
+			int index = pathSP[i].find(" (x86)", 0);
+			if (index != string::npos)
+				pathSP[i].replace(index, 6, "");
+		}
+	}
+
+	//폰트 크기 적용
 	m_font.CreateFont(13, 0, 0, 0, FW_NORMAL, FALSE, FALSE, 0, DEFAULT_CHARSET,
 		OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY,
 		DEFAULT_PITCH | FF_SWISS, _T("굴림체"));
 	GetDlgItem(IDC_STATIC_MAIN)->SetFont(&m_font);
 	GetDlgItem(IDC_STATIC_1)->SetFont(&m_font);
 
+	//뒤로가기 버튼은 처음에 숨김
 	GetDlgItem(IDC_BACK)->ShowWindow(SW_HIDE);
-	// ***********************************************************************************
+	
 	// Search 시작 
+	SearchSPFiles();
+	CSPCleanerDlg::PrintMain();
+	isOnBKWindow = true;
+	// **************************************************************************************//
+
+	return TRUE;  // 포커스를 컨트롤에 설정하지 않으면 TRUE를 반환합니다.
+}
+
+void CSPCleanerDlg::SearchSPFiles() {
 	int numSP = 0;
 
 	for (int i = 0; i < 21; i++)
@@ -200,7 +228,7 @@ BOOL CSPCleanerDlg::OnInitDialog()
 		USES_CONVERSION; //유니코드와 안시 사이의 변환을 간단하게 해줌.
 		//CString : wchar_t	형으로 유니코드 문자열 지원
 		CString Path = A2T(pathSP[i].c_str());  //	A2T : ANSI를 유니코드로 바꿔줌, .c_str() : string을 char*로 바꿔줌.
-		SearchSP* Sclass = new SearchSP(Path, _T(".exe"), nameSP[i], numSP, numSP_re);
+		SearchSP* Sclass = new SearchSP(Path, nameSP[i], numSP, numSP_re);
 		Sclass->FindFiles();
 
 		numSP++;
@@ -209,12 +237,6 @@ BOOL CSPCleanerDlg::OnInitDialog()
 	//classifiedBK 파일에 현재 존재하는 은행을 번호 : 은행명으로 기록
 	classify classify_a(numSP_re, inBK_re, classifiedBK);
 	isBK = classify_a.checkBK();	//존재하는 기관없을 시 0, 있으면 1 반환
-
-	CSPCleanerDlg::PrintMain();
-	isOnBKWindow = true;
-	// **************************************************************************************//
-
-	return TRUE;  // 포커스를 컨트롤에 설정하지 않으면 TRUE를 반환합니다.
 }
 
 void CSPCleanerDlg::OnSysCommand(UINT nID, LPARAM lParam)
@@ -348,6 +370,7 @@ void CSPCleanerDlg::OnBnClickedBack()
 		BKListToDelete.clear();
 		CSPCleanerDlg::m_mainEdit.SetWindowText(_T(""));
 		CSPCleanerDlg::PrintMain();
+		SearchSPFiles();
 		isOnBKWindow = true;
 	}
 }

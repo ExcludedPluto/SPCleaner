@@ -8,7 +8,6 @@ using namespace std;
 class classify
 {
 private:
-	char ThereBK[17][9];
 	int *numSP_re;
 	int (*inBK_re)[5];
 	vector<string>& classifiedBK;
@@ -91,7 +90,7 @@ bool classify::checkBK()
 					inBK_re[i][4] = 16;
 					i++;
 				}
-				else if (numSP_re[10] == 1 && numSP_re[15] == 1)
+				if (numSP_re[10] == 1 && numSP_re[15] == 1)
 				{
 					classifiedBK.push_back(std::to_string(i + 1) + " : 부산은행\n");
 					inBK_re[i][0] = 2;
@@ -112,7 +111,7 @@ bool classify::checkBK()
 				i++;
 			}
 		}
-		else if (numSP_re[15] == 1)
+		if (numSP_re[15] == 1)
 		{
 			if (numSP_re[7] == 1)
 			{
@@ -158,7 +157,7 @@ bool classify::checkBK()
 				}
 			}
 		}
-		else if (numSP_re[8] == 1)
+		if (numSP_re[8] == 1)
 		{
 			if (numSP_re[12] == 1)
 			{
@@ -177,7 +176,7 @@ bool classify::checkBK()
 					i++;
 				}
 			}
-			else if (numSP_re[15] == 1)
+			if (numSP_re[15] == 1)
 			{
 				classifiedBK.push_back(std::to_string(i + 1) + " : 하나은행\n");
 				inBK_re[i][0] = 9;

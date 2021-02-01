@@ -121,6 +121,7 @@
       </AdditionalLibraryDirectories>
       <AdditionalDependencies>
       </AdditionalDependencies>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
@@ -148,6 +149,7 @@
       </AdditionalLibraryDirectories>
       <AdditionalDependencies>
       </AdditionalDependencies>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
@@ -179,6 +181,7 @@
       </AdditionalLibraryDirectories>
       <AdditionalDependencies>
       </AdditionalDependencies>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
@@ -210,6 +213,7 @@
       </AdditionalLibraryDirectories>
       <AdditionalDependencies>
       </AdditionalDependencies>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>

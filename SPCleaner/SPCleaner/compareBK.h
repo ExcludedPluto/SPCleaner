@@ -1,5 +1,5 @@
-#include "algorithm"
-#include "String"
+#include <algorithm>
+#include <string>
 using namespace std;
 
 #ifndef __compareBK_H__
@@ -18,7 +18,7 @@ private:
 		"Ahnlab Online Security",
 		"AnySign",
 		"Alpha Secure",
-		"E - PAGE Safer Cross Platform",
+		"E-PAGE Safer Cross Platform",
 		"INISAFE CrossWeb EX",
 		"INISAFE SandBox",
 		"Interezen IPinsideLWS",
@@ -29,7 +29,7 @@ private:
 		"realip",
 		"smartManagerEx",
 		"TouchEn NxKey with E2E",
-		"WizlN - Delfino G3",
+		"WizlN-Delfino G3",
 		"INISAFE SFilter Client v7.2",
 		"iniline crossEX service",
 		"TrustNET Web ToolKit for SecuiFire IE",

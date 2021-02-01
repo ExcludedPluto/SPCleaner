@@ -11,17 +11,16 @@ class SearchSP
 {
 private:
 	const CString& strRootPath;	//삭제파일 주소
-	const CString& strExt;		//삭제파일 확장자
 	std::string& checkSP_2;		//삭제파일 이름
 	int numSP;					//삭제파일 번호
 	int* numSP_re;				//삭제파일 리스트
 public:
-	SearchSP(const CString& strR, const CString& strE, std::string& chSP_2, int nSP, int *numSP_re_m);
+	SearchSP(const CString& strR, std::string& chSP_2, int nSP, int *numSP_re_m);
 	void FindFiles();
 	void numSP_record();
 };
-SearchSP::SearchSP(const CString& strR, const CString& strE, std::string& chSP_2, int nSP, int *numSP_re_m) :
-	strRootPath(strR), strExt(strE), checkSP_2(chSP_2), numSP(nSP)
+SearchSP::SearchSP(const CString& strR,  std::string& chSP_2, int nSP, int *numSP_re_m) :
+	strRootPath(strR), checkSP_2(chSP_2), numSP(nSP)
 {
 	numSP_re = numSP_re_m;
 }

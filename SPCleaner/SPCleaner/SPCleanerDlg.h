@@ -41,4 +41,5 @@ public:
 	CRichEditCtrl m_mainEdit;
 	afx_msg void OnEnChangeEdit1();
 	afx_msg void OnBnClickedBack();
+	void SearchSPFiles();
 };
