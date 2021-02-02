@@ -1,0 +1,12 @@
+﻿  pch.cpp
+  SPCleaner.cpp
+  SPCleanerDlg.cpp
+C:\Users\gpfqp\Desktop\SPCleaner\SPCleaner\SPCleaner\SPCleanerDlg.cpp(24,1): warning C4005: '_WIN32_WINNT': 매크로 재정의
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\SDKDDKVer.h(217): message : '_WIN32_WINNT'의 이전 정의를 참조하십시오.
+C:\Users\gpfqp\Desktop\SPCleaner\SPCleaner\SPCleaner\SPCleanerDlg.cpp(307,21): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\gpfqp\Desktop\SPCleaner\SPCleaner\SPCleaner\SPCleanerDlg.cpp(342,21): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+  코드를 생성하고 있습니다.
+  Previous IPDB not found, fall back to full compilation.
+  All 730 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  코드를 생성했습니다.
+  SPCleaner.vcxproj -> C:\Users\gpfqp\Desktop\SPCleaner\SPCleaner\Release\SPCleaner.exe
