@@ -3,7 +3,7 @@ SPCleaner
 
 Download
 -----------------
-[https://drive.google.com/file/d/1VxiP6u7p75fk2VCMn1kvqrU8BQJQkJtL/view?usp=sharing]
+<https://drive.google.com/file/d/1VxiP6u7p75fk2VCMn1kvqrU8BQJQkJtL/view?usp=sharing>
 
 
 Description
@@ -15,7 +15,7 @@ Description
 
 Tech Stack
 -----------------
-~~C# .NET~~
+~~C# .NET~~   
 MFC
 C++
 
